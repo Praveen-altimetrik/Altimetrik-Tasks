@@ -1,0 +1,12 @@
+ID: 1, Name: praveen, Course: cse, Average_marks: 10.0
+ID: 1, Name: praveen, Course: cse, Average_marks: 10.0
+ID: 1, Name: PRAVEEN, Course: cse, Average_marks: 10.0
+ID: 1, Name: PRAVEEN, Course: cse, Average_marks: 10.0
+ID: 2, Name: Arun, Course: cse, Average_marks: 15.0
+ID: 1, Name: praveen, Course: cse, Average_marks: 14.0
+ID: 2, Name: koushik, Course: mech, Average_marks: 100.0
+ID: 1, Name: praveen, Course: cse, Average_marks: 12.0
+ID: 2, Name: koushik, Course: cse, Average_marks: 15.0
+ID: 1, Name: praveen, Course: cse, Average_marks: 12.0
+ID: 1, Name: praveen, Course: cse, Average_marks: 12.0
+ID: 1, Name: praveen, Course: cse, Average_marks: 10.0
