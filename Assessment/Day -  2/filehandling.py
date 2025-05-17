@@ -1,0 +1,10 @@
+file = open("data.txt","w")
+file.write("Hello praveen")
+print("File Written successfully")
+file.close()
+
+f = open("data.txt","r")
+content = f.read()
+print(content)
+print("File read successfully")
+f.close()
