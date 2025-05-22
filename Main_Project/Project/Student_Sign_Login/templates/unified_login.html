@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Unified Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #6a11cb, #00f0ff, #ff6ec4);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+ 
+    .login-box {
+      background: #ffffffee;
+      padding: 40px 30px 50px;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      width: 380px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+ 
+    .login-box h2 {
+      margin-bottom: 30px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #6a11cb, #00f0ff, #ff6ec4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+    }
+ 
+    .icons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 25px;
+    }
+ 
+    .icon-button {
+      cursor: pointer;
+      background: linear-gradient(135deg, #6a11cb, #00f0ff, #ff6ec4);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 36px;
+      transition: 0.3s ease;
+      user-select: none;
+      border: 3px solid transparent;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+ 
+    .icon-button:hover,
+    .icon-button.active {
+      transform: scale(1.05);
+      border-color: white;
+      filter: brightness(1.1);
+      box-shadow: 0 0 20px #ff6ec4;
+    }
+ 
+    form label {
+      display: block;
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #555;
+    }
+ 
+    form input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+ 
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #6a11cb, #00f0ff, #ff6ec4);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+ 
+    button[type="submit"]:hover {
+      filter: brightness(1.1);
+      box-shadow: 0 0 20px #ff6ec4;
+    }
+ 
+    .error {
+      color: #d33;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+ 
+    select[name="login_type"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>AIT LOGIN PORTAL</h2>
+    {% if messages %}
+      {% for message in messages %}
+        <p class="error">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+    <form method="POST" id="loginForm">
+      {% csrf_token %}
+      <div class="icons">
+        <div class="icon-button" data-login="student" title="Student" tabindex="0">🎓</div>
+        <div class="icon-button" data-login="faculty" title="Faculty/Admin" tabindex="0">👩‍🏫</div>
+        <div class="icon-button" data-login="parent" title="Parent" tabindex="0">👪</div>
+      </div>
+      <select name="login_type" id="login_type" required>
+        <option value="">Select login type</option>
+        <option value="student">Student</option>
+        <option value="faculty">Faculty/Admin</option>
+        <option value="parent">Parent</option>
+      </select>
+      <label for="username">Username</label>
+      <input type="text" name="username" id="username" required autocomplete="username" />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required autocomplete="current-password" />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+ 
+  <script>
+    const icons = document.querySelectorAll('.icon-button');
+    const loginTypeSelect = document.getElementById('login_type');
+ 
+    icons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        icons.forEach(i => i.classList.remove('active'));
+        icon.classList.add('active');
+        loginTypeSelect.value = icon.dataset.login;
+      });
+ 
+      icon.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          icon.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+ 
